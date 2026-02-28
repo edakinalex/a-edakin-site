@@ -85,8 +85,13 @@ ul,ol {
 
 .cases {
     display:flex;
-    gap:20px;
-    flex-wrap:wrap;
+    gap:24px;
+}
+
+.case {
+    flex: 0 0 33.333%;
+    background:#f6f6f6;
+    padding:24px;
 }
 
 .case {
