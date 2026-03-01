@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Алексей Едакин</title>
+  <style>
+    :root {
+      --bg: #f5f6f7;
+      --text: #111827;
+      --muted: #6b7280;
+      --line: rgba(17,24,39,.10);
+      --card: #ffffff;
+      --btn: rgba(255,255,255,.14);
+      --btnBorder: rgba(255,255,255,.22);
+      --btnText: rgba(255,255,255,.92);
+      --btnHover: rgba(255,255,255,.18);
+      --shadow: 0 10px 30px rgba(0,0,0,.10);
+      --radius: 16px;
+      --maxw: 1040px;
+      --font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; font-family: var(--font); color: var(--text); background: var(--bg); }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--maxw), calc(100% - 48px)); margin: 0 auto; }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      color: #fff;
+      padding: 64px 0 44px;
+      background:
+        radial-gradient(1200px 500px at 20% 35%, rgba(255,255,255,.14), rgba(255,255,255,0)),
+        linear-gradient(135deg, #3b3f45 0%, #1f2429 55%, #171b20 100%);
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,.20) 0%, rgba(0,0,0,.12) 45%, rgba(0,0,0,0) 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.35fr .9fr;
+      gap: 28px;
+      align-items: center;
+      z-index: 1;
+    }
+    .hero h1 {
+      margin: 0 0 10px;
+      font-weight: 650;
+      letter-spacing: .2px;
+      font-size: clamp(34px, 4vw, 44px);
+    }
+    .hero p {
+      margin: 0 0 22px;
+      color: rgba(255,255,255,.80);
+      max-width: 560px;
+      line-height: 1.45;
+      font-size: 16px;
+    }
+    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--btnBorder);
+      background: var(--btn);
+      color: var(--btnText);
+      font-size: 13px;
+      letter-spacing: .2px;
+      transition: background .15s ease, transform .15s ease;
+      backdrop-filter: blur(6px);
+    }
+    .btn:hover { background: var(--btnHover); transform: translateY(-1px); }
+    .hero-photo {
+      justify-self: end;
+      width: min(360px, 100%);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+    }
+    .hero-photo img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* SECTIONS */
+    main { padding: 34px 0 64px; }
+    section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 26px 24px;
+      margin: 14px 0;
+      box-shadow: 0 1px 0 rgba(0,0,0,.02);
+    }
+    h2 {
+      margin: 0 0 14px;
+      font-size: 18px;
+      font-weight: 650;
+      letter-spacing: .2px;
+    }
+    ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--text);
+      line-height: 1.55;
+    }
+    li { margin: 6px 0; }
+    .muted { color: var(--muted); }
+
+    /* CASES */
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 12px;
+    }
+    .case-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px 16px 14px;
+      background: #fafafa;
+      display: flex;
+      flex-direction: column;
+      min-height: 170px;
+    }
+    .case-title { font-weight: 650; font-size: 14px; margin: 0 0 8px; }
+    .case-desc { margin: 0 0 14px; color: var(--muted); font-size: 13px; line-height: 1.45; }
+    .case-btn {
+      margin-top: auto;
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 9px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(17,24,39,.16);
+      background: #fff;
+      font-size: 13px;
+      transition: transform .12s ease, background .12s ease;
+    }
+    .case-btn:hover { background: #f3f4f6; transform: translateY(-1px); }
+
+    /* CONTACTS */
+    .contacts-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .contacts-row a { text-decoration: underline; text-underline-offset: 3px; }
+
+    /* FOOT */
+    footer {
+      padding: 18px 0 42px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-photo { justify-self: start; width: min(420px, 100%); }
+      .cases-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container hero-inner">
+      <div>
+        <h1>Алексей Едакин</h1>
+        <p>Архитектурная трансформация и восстановление управляемости промышленных систем.</p>
+        <div class="btn-row">
+          <a class="btn" href="pdf/Edakin_Executive_Profile.pdf" target="_blank" rel="noopener">Открыть профиль (PDF)</a>
+          <a class="btn" href="#contacts">Связаться</a>
+        </div>
+      </div>
+      <div class="hero-photo" aria-label="Фото">
+        <img src="assets/portrait.png" alt="Алексей Едакин" />
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2>Если требуется:</h2>
+      <ul>
+        <li>восстановить управляемость при накоплении системных ограничений</li><li>стабилизировать финансово-производственную модель</li><li>обеспечить исполнимость стратегических контрактов</li><li>снизить долговую нагрузку и восстановить кредитоспособность</li><li>запустить рост без остановки производства</li><li>провести институциональную трансформацию активов</li><li>обеспечить прозрачность управляемых активов на постоянной основе</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Результативность</h2>
+      <ul>
+        <li>Перелом управляемости — 3–6 месяцев</li><li>Рост в 4 раза за 2 года</li><li>Восстановление кредитоспособности</li><li>Интеграция активов в государственные холдинги</li><li>Институционализация изменений и устойчивость после выхода</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Подход</h2>
+      <ol class="muted" style="margin:0;padding-left:18px;line-height:1.55;color:var(--text);">
+        <li style="margin:6px 0;">Системная диагностика и выявление ограничений</li><li style="margin:6px 0;">Формирование сводной финансово-производственной модели</li><li style="margin:6px 0;">Проектирование архитектуры управленческих решений</li><li style="margin:6px 0;">Обеспечение финансирования и устойчивости кооперации</li><li style="margin:6px 0;">Закрепление изменений через нормативную базу и управленческие процедуры</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Управленческие кейсы</h2>
+      <div class="cases-grid">
+        
+        <article class="case-card">
+          <h3 class="case-title">Трансформация промышленного концерна</h3>
+          <p class="case-desc">Выделение военного дивизиона, реструктуризация долгов и восстановление управляемости.</p>
+          <a class="case-btn" href="pdf/Edakin_Industrial_Transformation.pdf" target="_blank" rel="noopener">Открыть (PDF)</a>
+        </article>
+        <article class="case-card">
+          <h3 class="case-title">Восстановление управляемости и запуск роста</h3>
+          <p class="case-desc">Формирование исполнимой финансово-производственной модели и обеспечение роста в 4 раза за 2 года.</p>
+          <a class="case-btn" href="pdf/Edakin_Growth_and_Manageability.pdf" target="_blank" rel="noopener">Открыть (PDF)</a>
+        </article>
+        <article class="case-card">
+          <h3 class="case-title">Антикризисная стабилизация холдинга</h3>
+          <p class="case-desc">Восстановление кредитоспособности и предотвращение остановки производства.</p>
+          <a class="case-btn" href="pdf/Edakin_Anticrisis_Management.pdf" target="_blank" rel="noopener">Открыть (PDF)</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="contacts">
+      <h2>Контакты</h2>
+      <div class="contacts-row">
+        <div>www.a-edakin.ru</div>
+        <div>Email:&nbsp; <a href="mailto:info@a-edakin.ru">info@a-edakin.ru</a></div>
+        <div>Телефон:&nbsp; <a href="tel:+79957940080">+7 (995) 794-00-80</a></div>
+      </div>
+
+      <div style="margin-top:14px;">
+        <a class="case-btn" href="pdf/Edakin_Full_Biography.pdf" target="_blank" rel="noopener">Открыть полную биографию (PDF)</a>
+      </div>
+    </section>
+
+    <footer>
+      © Алексей Едакин. Статический сайт (HTML) для загрузки на хостинг.
+    </footer>
+  </main>
+</body>
+</html>
